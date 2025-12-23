@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: navidrome
+spec:
+  selector:
+    matchLabels:
+      app: navidrome
+  serviceName: navidrome
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: navidrome
+    spec:
+      containers:
+        - name: navidrome
+          image: deluan/navidrome
+          env:
+            - name: ND_BIND_ADDR
+              value: "0.0.0.0"
+            - name: ND_REVERSEPROXY
+              value: "false"
+            - name: ND_BASEURL
+              value: ""
+          envFrom:
+            - secretRef:
+                name: navidrome
+          ports:
+            - name: http
+              containerPort: 4533
+          volumeMounts:
+            - name: navidrome-config
+              mountPath: /data
+            - name: music
+              mountPath: /music
+  volumeClaimTemplates:
+    - metadata:
+        name: navidrome-config
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
