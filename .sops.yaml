@@ -1,0 +1,5 @@
+creation_rules:
+  - encrypted_regex: '^(data|stringData)$'
+    path_regex: 'cluster/.*/(secrets/.*\.yaml|secrets\.yaml)$'
+    age: >-
+      age1dkl0k8ndnpsu2ufc3sfh63u025clw6t254tpkjg77e026f9n6q5se3jz6p
