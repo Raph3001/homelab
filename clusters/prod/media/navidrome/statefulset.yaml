@@ -34,6 +34,10 @@ spec:
               mountPath: /data
             - name: music
               mountPath: /music
+      volumes:
+        - name: music
+          persistentVolumeClaim:
+            claimName: music
   volumeClaimTemplates:
     - metadata:
         name: navidrome-config
