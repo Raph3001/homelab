@@ -16,6 +16,15 @@ spec:
   values:
     apiServerProxyConfig:
       mode: "true"
+  valuesFrom:
+    - kind: Secret
+      name: operator-oauth
+      valuesKey: client_id
+      targetPath: oauth.clientId
+    - kind: Secret
+      name: operator-oauth
+      valuesKey: client_secret
+      targetPath: oauth.clientSecret
   upgrade:
     remediation:
       remediateLastFailure: true
