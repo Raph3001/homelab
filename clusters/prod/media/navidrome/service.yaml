@@ -25,5 +25,5 @@ spec:
         name: http
     ingressClassName: tailscale
     tls:
-      hosts:
+      - hosts:
         - navidrome
