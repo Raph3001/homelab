@@ -1,9 +1,8 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: jellyfin
 spec:
-  serviceName: jellyfin
   replicas: 1
   selector:
     matchLabels:
@@ -20,22 +19,18 @@ spec:
             - name: http
               containerPort: 8096
           volumeMounts:
-            - name: jellyfin-config
+            - name: config
               mountPath: /config
-
-            - name: jellyfin-cache
-              mountPath: /cache
-
             - name: tv
               mountPath: /tv
-
             - name: movies
               mountPath: /movies
-
             - name: videos
               mountPath: /videos
-
       volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
         - name: tv
           persistentVolumeClaim:
             claimName: tv
@@ -45,16 +40,3 @@ spec:
         - name: videos
           persistentVolumeClaim:
             claimName: videos
-        - name: jellyfin-cache
-          persistentVolumeClaim:
-            claimName: jellyfin-cache
-
-  volumeClaimTemplates:
-    - metadata:
-        name: jellyfin-config
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 5Gi

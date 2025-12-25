@@ -6,7 +6,7 @@ spec:
   capacity:
     storage: "5Ti"
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   hostPath:
@@ -20,7 +20,7 @@ metadata:
   name: tv
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: "5Ti"
