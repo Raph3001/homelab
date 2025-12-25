@@ -23,7 +23,7 @@ spec:
       name: navidrome
       port:
         name: http
-    ingressClassName: tailscale
-    tls:
-      - hosts:
-        - navidrome
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+      - navidrome
