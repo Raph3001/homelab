@@ -3,11 +3,11 @@ kind: StatefulSet
 metadata:
   name: jellyfin
 spec:
+  serviceName: jellyfin
+  replicas: 1
   selector:
     matchLabels:
       app: jellyfin
-  serviceName: jellyfin
-  replicas: 1
   template:
     metadata:
       labels:
@@ -22,14 +22,19 @@ spec:
           volumeMounts:
             - name: jellyfin-config
               mountPath: /config
+
             - name: jellyfin-cache
               mountPath: /cache
+
             - name: tv
               mountPath: /tv
+
             - name: movies
               mountPath: /movies
+
             - name: videos
               mountPath: /videos
+
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -43,9 +48,7 @@ spec:
         - name: jellyfin-cache
           persistentVolumeClaim:
             claimName: jellyfin-cache
-        - name: jellyfin-config
-          persistentVolumeClaim:
-            claimName: jellyfin-config
+
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
