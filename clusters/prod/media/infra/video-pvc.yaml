@@ -1,28 +1,28 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: youtube
+  name: videos
 spec:
   capacity:
     storage: "5Ti"
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   hostPath:
-    path: /mnt/hdd/shared/mediacenter/media/youtube
+    path: /mnt/hdd/shared/mediacenter/media/videos
     type: Directory
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: youtube
+  name: videos
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: "5Ti"
   storageClassName: ""
-  volumeName: youtube
+  volumeName: videos

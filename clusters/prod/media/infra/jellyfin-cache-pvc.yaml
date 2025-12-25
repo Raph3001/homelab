@@ -6,7 +6,7 @@ spec:
   capacity:
     storage: 25Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   hostPath:
@@ -19,7 +19,7 @@ metadata:
   name: jellyfin-cache
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: "25Gi"
