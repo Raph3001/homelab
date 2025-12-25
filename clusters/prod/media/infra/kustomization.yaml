@@ -5,3 +5,4 @@ resources:
   - movie-pvc.yaml
   - video-pvc.yaml
   - tv-pvc.yaml
+  - jellyfin-cache-pvc.yaml

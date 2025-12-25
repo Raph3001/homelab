@@ -25,11 +25,11 @@ spec:
             - name: jellyfin-cache
               mountPath: /cache
             - name: tv
-              mountPath: /media/tv
+              mountPath: /tv
             - name: movies
-              mountPath: /media/movies
+              mountPath: /movies
             - name: videos
-              mountPath: /media/videos
+              mountPath: /videos
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -40,6 +40,12 @@ spec:
         - name: videos
           persistentVolumeClaim:
             claimName: videos
+        - name: jellyfin-cache
+          persistentVolumeClaim:
+            claimName: jellyfin-cache
+        - name: jellyfin-config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
