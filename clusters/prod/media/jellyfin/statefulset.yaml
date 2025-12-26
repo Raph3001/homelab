@@ -16,16 +16,6 @@ spec:
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
-          env:
-            - name: ND_BIND_ADDR
-              value: "0.0.0.0"
-            - name: ND_REVERSEPROXY
-              value: "false"
-            - name: ND_BASEURL
-              value: ""
-          envFrom:
-            - secretRef:
-                name: jellyfin
           ports:
             - name: http
               containerPort: 8096
