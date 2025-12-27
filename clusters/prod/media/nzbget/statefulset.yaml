@@ -29,7 +29,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: config
+            claimName: nzbget-config
         - name: downloads
           persistentVolumeClaim:
             claimName: downloads
