@@ -6,3 +6,4 @@ resources:
   - infra
   - navidrome
   - jellyfin
+  - nzbget
