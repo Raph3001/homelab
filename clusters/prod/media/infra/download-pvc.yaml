@@ -1,4 +1,20 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: downloads
+spec:
+  capacity:
+    storage: "500Gi"
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  hostPath:
+    path: /home/beelink/mediacenter_downloads
+    type: Directory
+
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: downloads
@@ -7,5 +23,6 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: "200Gi"
-      
+      storage: "500Gi"
+  storageClassName: ""
+  volumeName: downloads
