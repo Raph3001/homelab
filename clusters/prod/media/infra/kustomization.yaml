@@ -6,3 +6,5 @@ resources:
   - youtube-pvc.yaml
   - tv-pvc.yaml
   - movie-pvc.yaml
+  - download-pvc.yaml
+  - incomplete-pvc.yaml
