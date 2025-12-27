@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
   - music-pvc.yaml
   - media-pvc.yaml
+  - youtube-pvc.yaml
+  - tv-pvc.yaml
+  - movie-pvc.yaml
