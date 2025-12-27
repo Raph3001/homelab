@@ -22,12 +22,22 @@ spec:
           volumeMounts:
             - name: jellyfin-config
               mountPath: /data
-            - name: media
-              mountPath: /media
+            - name: tv
+              mountPath: /tv
+            - name: movies
+              mountPath: /movies
+            - name: videos
+              mountPath: /videos
       volumes:
-        - name: media
+        - name: tv
           persistentVolumeClaim:
-            claimName: media
+            claimName: tv
+        - name: movies
+          persistentVolumeClaim:
+            claimName: movies
+        - name: videos
+          persistentVolumeClaim:
+            claimName: videos
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
