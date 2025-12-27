@@ -6,5 +6,6 @@ resources:
   - infra
   - navidrome
   - jellyfin
+  - prowlarr
   - nzbget
   - sonarr
