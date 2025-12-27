@@ -19,6 +19,9 @@ spec:
           ports:
             - name: http
               containerPort: 6789
+          envFrom:
+            - secretRef:
+                name: nzbget
           volumeMounts:
             - name: config
               mountPath: /config
