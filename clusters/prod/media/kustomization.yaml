@@ -10,3 +10,4 @@ resources:
   - nzbget
   - sonarr
   - radarr
+  - lidarr
