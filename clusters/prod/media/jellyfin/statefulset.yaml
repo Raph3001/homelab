@@ -21,7 +21,7 @@ spec:
               containerPort: 8096
           volumeMounts:
             - name: jellyfin-config
-              mountPath: /data
+              mountPath: /config
             - name: tv
               mountPath: /tv
             - name: movies
