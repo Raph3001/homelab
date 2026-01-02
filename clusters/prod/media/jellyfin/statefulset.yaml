@@ -13,40 +13,40 @@ spec:
       labels:
         app: jellyfin
     spec:
-    securityContext:
-      supplementalGroups:
-        - 105
-    containers:
-      - name: jellyfin
-        image: jellyfin/jellyfin:latest
-        ports:
-          - name: http
-            containerPort: 8096
-        volumeMounts:
-          - name: jellyfin-config
-            mountPath: /config
-          - name: tv
-            mountPath: /tv
-          - name: movies
-            mountPath: /movies
-          - name: videos
-            mountPath: /videos
-          - name: dri
-            mountPath: /dev/dri
-    volumes:
-      - name: tv
-        persistentVolumeClaim:
-          claimName: tv
-      - name: movies
-        persistentVolumeClaim:
-          claimName: movies
-      - name: videos
-        persistentVolumeClaim:
-          claimName: videos
-      - name: dri
-        hostPath:
-          path: /dev/dri
-          type: Directory
+      securityContext:
+        supplementalGroups:
+          - 105
+      containers:
+        - name: jellyfin
+          image: jellyfin/jellyfin:latest
+          ports:
+            - name: http
+              containerPort: 8096
+          volumeMounts:
+            - name: jellyfin-config
+              mountPath: /config
+            - name: tv
+              mountPath: /tv
+            - name: movies
+              mountPath: /movies
+            - name: videos
+              mountPath: /videos
+            - name: dri
+              mountPath: /dev/dri
+      volumes:
+        - name: tv
+          persistentVolumeClaim:
+            claimName: tv
+        - name: movies
+          persistentVolumeClaim:
+            claimName: movies
+        - name: videos
+          persistentVolumeClaim:
+            claimName: videos
+        - name: dri
+          hostPath:
+            path: /dev/dri
+            type: Directory
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
