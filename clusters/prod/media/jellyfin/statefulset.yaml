@@ -13,6 +13,9 @@ spec:
       labels:
         app: jellyfin
     spec:
+    securityContext:
+      supplementalGroups:
+        - 105
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
@@ -28,6 +31,8 @@ spec:
               mountPath: /movies
             - name: videos
               mountPath: /videos
+            - name: dri
+              mountPath: /dev/dri
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -38,6 +43,10 @@ spec:
         - name: videos
           persistentVolumeClaim:
             claimName: videos
+        - name: dri
+          hostPath:
+            path: /dev/dri
+            type: Directory
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
