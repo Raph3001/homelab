@@ -18,6 +18,8 @@ spec:
         supplementalGroups:
           - 44 # for video
           - 105 # for rendering
+        seccompProfile:
+          type: Unconfined
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
