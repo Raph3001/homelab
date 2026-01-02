@@ -52,6 +52,10 @@ spec:
             - name: lib-dri
               mountPath: /usr/lib/x86_64-linux-gnu/dri
               readOnly: true
+            - name: sys-drm
+              mountPath: /sys/class/drm
+              readOnly: true
+
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -72,6 +76,11 @@ spec:
             type: Directory
         - name: jellyfin-cache
           emptyDir: {}
+        - name: sys-drm
+          hostPath:
+            path: /sys/class/drm
+            type: Directory
+
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
