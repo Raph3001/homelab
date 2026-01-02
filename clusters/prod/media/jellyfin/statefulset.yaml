@@ -14,15 +14,13 @@ spec:
         app: jellyfin
     spec:
       securityContext:
-        fsGroup: 1000 # filesystem group 1000 
         supplementalGroups:
-          - 44 # for video
-          - 105 # for rendering
+          - 105
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
           env:
-            - name: LIBVA_DRIVER_NAME # intel integrated GPU
+            - name: LIBVA_DRIVER_NAME
               value: iHD
             - name: LIBVA_DRIVERS_PATH
               value: /usr/lib/x86_64-linux-gnu/dri
@@ -30,9 +28,9 @@ spec:
             - name: http
               containerPort: 8096
           securityContext:
+            privileged: true
             runAsUser: 0
             runAsGroup: 0
-            privileged: true
           volumeMounts:
             - name: jellyfin-config
               mountPath: /config
@@ -69,7 +67,6 @@ spec:
             type: Directory
         - name: jellyfin-cache
           emptyDir: {}
-
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
