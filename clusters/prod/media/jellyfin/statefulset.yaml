@@ -14,6 +14,7 @@ spec:
         app: jellyfin
     spec:
       securityContext:
+        fsGroup: 1000
         supplementalGroups:
           - 44 # for video
           - 105 # for rendering
