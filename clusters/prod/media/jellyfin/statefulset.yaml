@@ -27,6 +27,8 @@ spec:
           securityContext:
             runAsUser: 0
             runAsGroup: 0
+            supplementalGroups:
+              - 105
           volumeMounts:
             - name: jellyfin-config
               mountPath: /config
