@@ -14,7 +14,7 @@ spec:
         app: jellyfin
     spec:
       securityContext:
-        fsGroup: 1000
+        fsGroup: 1000 # filesystem group 1000 
         supplementalGroups:
           - 44 # for video
           - 105 # for rendering
@@ -22,14 +22,10 @@ spec:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
           env:
-            - name: LIBVA_DRIVER_NAME
+            - name: LIBVA_DRIVER_NAME # intel integrated GPU
               value: iHD
             - name: LIBVA_DRIVERS_PATH
               value: /usr/lib/x86_64-linux-gnu/dri
-            - name: TMPDIR
-              value: /cache
-            - name: FFREPORT
-              value: file=/cache/ffmpeg-report.log:level=32
           ports:
             - name: http
               containerPort: 8096
@@ -52,10 +48,6 @@ spec:
             - name: lib-dri
               mountPath: /usr/lib/x86_64-linux-gnu/dri
               readOnly: true
-            - name: sys-drm
-              mountPath: /sys/class/drm
-              readOnly: true
-
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -76,10 +68,6 @@ spec:
             type: Directory
         - name: jellyfin-cache
           emptyDir: {}
-        - name: sys-drm
-          hostPath:
-            path: /sys/class/drm
-            type: Directory
 
   volumeClaimTemplates:
     - metadata:
