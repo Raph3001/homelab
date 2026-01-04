@@ -13,6 +13,24 @@ spec:
       labels:
         app: jellyfin
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: jellyfin.hw
+                    operator: In
+                    values:
+                      - amd
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: jellyfin.hw
+                    operator: In
+                    values:
+                      - amd
+                      - intel
       securityContext:
         supplementalGroups:
           - 105
