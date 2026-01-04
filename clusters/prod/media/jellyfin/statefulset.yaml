@@ -19,11 +19,6 @@ spec:
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
-          env:
-            - name: LIBVA_DRIVER_NAME
-              value: iHD
-            - name: LIBVA_DRIVERS_PATH
-              value: /usr/lib/x86_64-linux-gnu/dri
           ports:
             - name: http
               containerPort: 8096
