@@ -53,13 +53,8 @@ spec:
               mountPath: /movies
             - name: videos
               mountPath: /videos
-            - name: dri
-              mountPath: /dev/dri
             - name: jellyfin-cache
               mountPath: /cache
-            - name: lib-dri
-              mountPath: /usr/lib/x86_64-linux-gnu/dri
-              readOnly: true
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -70,14 +65,6 @@ spec:
         - name: videos
           persistentVolumeClaim:
             claimName: videos
-        - name: dri
-          hostPath:
-            path: /dev/dri
-            type: Directory
-        - name: lib-dri
-          hostPath:
-            path: /usr/lib/x86_64-linux-gnu/dri
-            type: Directory
         - name: jellyfin-cache
           emptyDir: {}
   volumeClaimTemplates:
