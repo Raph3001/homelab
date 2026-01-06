@@ -22,7 +22,7 @@ spec:
                   - key: jellyfin.hw
                     operator: In
                     values:
-                      - amd
+                      - preferred
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
