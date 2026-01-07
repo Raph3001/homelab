@@ -13,6 +13,8 @@ spec:
       labels:
         app: radarr
     spec:
+      nodeSelector:
+        downloads: "true"
       containers:
         - name: radarr
           image: lscr.io/linuxserver/radarr:latest
