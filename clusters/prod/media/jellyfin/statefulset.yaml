@@ -82,9 +82,7 @@ spec:
           hostPath:
             path: /dev/dri
         - name: jellyfin-cache
-          emptyDir: 
-            medium: Memory
-            sizeLimit: 3Gi
+          emptyDir: {}
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
