@@ -66,6 +66,8 @@ spec:
               mountPath: /videos
             - name: jellyfin-cache
               mountPath: /cache
+            - name: dri
+              mountPath: /dev/dri
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -76,8 +78,13 @@ spec:
         - name: videos
           persistentVolumeClaim:
             claimName: videos
+        - name: dri
+          hostPath:
+            path: /dev/dri
         - name: jellyfin-cache
-          emptyDir: {}
+          emptyDir: 
+            medium: Memory
+            sizeLimit: 3Gi
   volumeClaimTemplates:
     - metadata:
         name: jellyfin-config
