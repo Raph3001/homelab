@@ -17,6 +17,11 @@ spec:
         downloads: "true"
       containers:
         - name: radarr
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
           image: lscr.io/linuxserver/radarr:latest
           ports:
             - name: http
