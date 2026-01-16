@@ -15,7 +15,7 @@ spec:
     spec:
       nodeSelector:
         downloads: "true"
-      ecurityContext:        # <--- ADD THIS
+      securityContext:
         fsGroup: 1000  
       containers:
         - name: radarr
