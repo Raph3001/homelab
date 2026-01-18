@@ -15,6 +15,10 @@ spec:
     spec:
       nodeSelector:
         downloads: "true"
+      securityContext:
+        fsGroup: 1000  
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: lidarr
           image: lscr.io/linuxserver/lidarr:latest
