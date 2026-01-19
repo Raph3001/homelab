@@ -45,14 +45,12 @@ spec:
           - 44
       containers:
         - name: jellyfin
-          image: linuxserver/jellyfin:latest
+          image: jellyfin/jellyfin:latest
           resources:
             requests:
               cpu: "1000m"
               memory: "4Gi"
           env:
-            - name: DOCKER_MODS
-              value: "linuxserver/mods:jellyfin-opencl-amd"
             - name: PUID
               value: "0"
             - name: PGID
