@@ -59,6 +59,8 @@ spec:
               value: "0"
             - name: RENDER_GROUP_ID
               value: "992" 
+            - name: LIBVA_DRIVER_NAME
+              value: "radeonsi"
           ports:
             - name: http
               containerPort: 8096
