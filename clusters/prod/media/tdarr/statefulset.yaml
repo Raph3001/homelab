@@ -4,10 +4,17 @@ metadata:
   name: tdarr
   namespace: media
 spec:
+  serviceName: tdarr
+  replicas: 1
   selector:
     matchLabels:
       app: tdarr
-  affinity:
+  template:
+    metadata:
+      labels:
+        app: tdarr
+    spec:
+      affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 100
@@ -16,30 +23,21 @@ spec:
                   - key: perf
                     operator: In
                     values: ["high"]
-
             - weight: 50
               preference:
                 matchExpressions:
                   - key: perf
                     operator: In
                     values: ["medium"]
-
             - weight: 10
               preference:
                 matchExpressions:
                   - key: perf
                     operator: In
                     values: ["low"]
-  serviceName: tdarr
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: tdarr
-    spec:
       securityContext:
         fsGroup: 1000
-    containers:
+      containers:
         - name: tdarr
           image: haveagitgat/tdarr:latest
           imagePullPolicy: Always
@@ -47,7 +45,7 @@ spec:
             - name: PUID
               value: "1000"
             - name: PGID
-              value: "1000" 
+              value: "1000"
             - name: serverIP
               value: "0.0.0.0"
             - name: internalNode
@@ -70,7 +68,7 @@ spec:
               name: movies
             - mountPath: /tv
               name: tv
-    volumes:          
+      volumes:          
         - name: logs
           emptyDir: {}
         - name: temp
