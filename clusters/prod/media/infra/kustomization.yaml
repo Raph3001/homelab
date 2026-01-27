@@ -8,3 +8,4 @@ resources:
   - movie-pvc.yaml
   - download-pvc.yaml
   - incomplete-pvc.yaml
+  - transcoded-movies-pvc.yaml

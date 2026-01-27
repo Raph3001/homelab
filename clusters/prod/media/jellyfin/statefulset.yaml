@@ -71,6 +71,8 @@ spec:
               mountPath: /config
             - name: tv
               mountPath: /tv
+            - name: transcoded_movies
+              mountPath: /transcoded_movies
             - name: movies
               mountPath: /movies
             - name: videos
@@ -91,6 +93,9 @@ spec:
         - name: videos
           persistentVolumeClaim:
             claimName: videos
+        - name: transcoded_movies
+          persistentVolumeClaim:
+            claimName: transcoded_movies
         - name: dri
           hostPath:
             path: /dev/dri
