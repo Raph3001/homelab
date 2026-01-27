@@ -67,8 +67,9 @@ spec:
             - mountPath: /movies
               name: movies
             - mountPath: /tv
-              name: transcoded-movies
+              name: tv
             - mountPath: /transcoded-movies
+              name: transcoded-movies
       volumes:          
         - name: logs
           emptyDir: {}
