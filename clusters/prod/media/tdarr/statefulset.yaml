@@ -67,8 +67,8 @@ spec:
             - mountPath: /movies
               name: movies
             - mountPath: /tv
-              name: tv
-            - mountPath: /transcoded_movies
+              name: transcoded-movies
+            - mountPath: /transcoded-movies
       volumes:          
         - name: logs
           emptyDir: {}
@@ -80,9 +80,9 @@ spec:
         - name: tv
           persistentVolumeClaim:
             claimName: tv
-        - name: transcoded_movies
+        - name: transcoded-movies
           persistentVolumeClaim:
-            claimName: transcoded_movies
+            claimName: transcoded-movies
   volumeClaimTemplates:
     - metadata:
         name: config
