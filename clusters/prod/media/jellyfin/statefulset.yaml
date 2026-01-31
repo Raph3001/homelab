@@ -39,6 +39,27 @@ spec:
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                  - "/bin/sh"
+                  - "-c"
+                  - |
+                    apt-get update
+                    VENDOR_ID=$(cat /sys/class/drm/card0/device/vendor)
+
+                    
+                    if [ "$VENDOR_ID" = "0x8086" ]; then
+                        echo "Intel. Installing Intel OpenCL and Media drivers"
+                        apt-get install -y intel-opencl-icd intel-media-va-driver-non-free
+                    elif [ "$VENDOR_ID" = "0x1002" ]; then
+                        echo "AMD. Installing Mesa OpenCL drivers"
+                        apt-get install -y mesa-opencl-icd
+                    else
+                        echo "Unknown hardware ($VENDOR_ID). Installing generic Mesa drivers"
+                        apt-get install -y mesa-va-drivers mesa-opencl-icd
+                    fi
           resources:
             requests:
               cpu: "1000m"
