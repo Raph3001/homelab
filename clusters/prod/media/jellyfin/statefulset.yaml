@@ -36,13 +36,6 @@ spec:
                   - key: perf
                     operator: In
                     values: ["low"]
-
-
-      securityContext:
-        supplementalGroups:
-          - 105
-          - 992
-          - 44
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
@@ -55,10 +48,6 @@ spec:
               value: "0"
             - name: PGID
               value: "0"
-            - name: RENDER_GROUP_ID
-              value: "992" 
-            - name: LIBVA_DRIVER_NAME
-              value: "radeonsi"
           ports:
             - name: http
               containerPort: 8096
