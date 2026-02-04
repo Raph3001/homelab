@@ -26,6 +26,8 @@ spec:
               value: "on"
             - name: DOT
               value: "off"
+            - name: DNS_ADDRESS
+              value: "10.43.0.10" 
             - name: VPN_SERVICE_PROVIDER
               value: mullvad
             - name: VPN_TYPE
