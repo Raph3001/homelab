@@ -13,10 +13,6 @@ spec:
       labels:
         app: slskd
     spec:
-      securityContext:
-        sysctls:
-          - name: net.ipv4.conf.all.src_valid_mark
-            value: "1"
       containers:
         - name: vpn
           image: qmcgaw/gluetun
