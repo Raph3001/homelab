@@ -23,6 +23,7 @@ spec:
         - name: vpn
           image: qmcgaw/gluetun
           securityContext:
+            privileged: true
             capabilities:
               add:
                 - NET_ADMIN
@@ -31,6 +32,10 @@ spec:
               value: mullvad
             - name: VPN_TYPE
               value: wireguard
+            - name: WIREGUARD_ENDPOINT_IP_FAMILY
+              value: v4
+            - name: WIREGUARD_MTU
+              value: "1320"
             - name: WIREGUARD_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
