@@ -24,8 +24,6 @@ spec:
           env:
             - name: DNS_KEEP_NAMESERVERS
               value: "on"
-            - name: SERVER_HOSTNAMES
-              value: se-got-wg-001.relays.mullvad.net 
             - name: DOT
               value: "off"
             - name: VPN_SERVICE_PROVIDER
