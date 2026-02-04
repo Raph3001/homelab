@@ -32,6 +32,8 @@ spec:
               mountPath: /downloads
             - name: music
               mountPath: /music
+            - name: soulseek-download
+              mountPath: /soulseek-download
       volumes:
         - name: music
           persistentVolumeClaim:
@@ -39,6 +41,9 @@ spec:
         - name: downloads
           persistentVolumeClaim:
             claimName: downloads
+        - name: soulseek-download
+          persistentVolumeClaim:
+            claimName: soulseek-download
   volumeClaimTemplates:
     - metadata:
         name: config
