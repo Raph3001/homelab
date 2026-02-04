@@ -13,12 +13,10 @@ spec:
       labels:
         app: slskd
     spec:
-      dnsPolicy: None
-      dnsConfig:
-        nameservers:
-          - 1.1.1.1
-          - 1.0.0.1
-
+      securityContext:
+        sysctls:
+          - name: net.ipv4.conf.all.src_valid_mark
+            value: "1"
       containers:
         - name: vpn
           image: qmcgaw/gluetun
@@ -28,6 +26,10 @@ spec:
               add:
                 - NET_ADMIN
           env:
+            - name: DNS_KEEP_NAMESERVERS
+              value: "on"
+            - name: DOT
+              value: "off"
             - name: VPN_SERVICE_PROVIDER
               value: mullvad
             - name: VPN_TYPE
