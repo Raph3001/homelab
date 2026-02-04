@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: slskd
 spec:
-  serviceName: "slskd"
+  serviceName: slskd
   replicas: 1
   selector:
     matchLabels:
