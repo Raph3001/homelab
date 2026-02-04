@@ -26,6 +26,10 @@ spec:
           env:
             - name: SLSKD_REMOTE_CONFIGURATION
               value: "true"
+            - name: SLSKD_USERNAME
+              value: "root"
+            - name: SLSKD_PASSWORD
+              value: "root123"
           volumeMounts:
             - name: slskd-config
               mountPath: /app
