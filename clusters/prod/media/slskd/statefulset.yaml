@@ -5,7 +5,7 @@ metadata:
   namespace: media  # Added namespace for clarity
 spec:
   serviceName: slskd
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: slskd
