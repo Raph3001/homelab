@@ -14,31 +14,55 @@ spec:
         app: slskd
     spec:
       containers:
-        - name: slskd
-          image: slskd/slskd:latest
+        - name: vpn
+          image: qmcgaw/gluetun
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: mullvad
+            - name: VPN_TYPE
+              value: wireguard
+            - name: WIREGUARD_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mullvad-vpn
+                  key: private-key
+            - name: WIREGUARD_ADDRESSES
+              valueFrom:
+                secretKeyRef:
+                  name: mullvad-vpn
+                  key: address
+            - name: SERVER_COUNTRIES
+              value: "Sweden"
           ports:
             - containerPort: 5030
               name: http
-            - containerPort: 5031
-              name: metrics
-            - containerPort: 50300
-              name: soulseek
+
+        - name: slskd
+          image: slskd/slskd:latest
           env:
+            - name: SLSKD_HTTP_URL
+              value: "http://127.0.0.1:5030"
             - name: SLSKD_REMOTE_CONFIGURATION
               value: "true"
-            - name: SLSKD_USERNAME
-              value: "root"
-            - name: SLSKD_PASSWORD
-              value: "root123"
+            - name: SLSKD_SOULSEEK_USERNAME
+              value: "corneliust"
+            - name: SLSKD_SOULSEEK_PASSWORD
+              value: "Cornelius123"
           volumeMounts:
             - name: slskd-config
               mountPath: /app
             - name: downloads
-              mountPath: /app/downloads 
+              mountPath: /app/downloads
+      
       volumes:
         - name: downloads
           persistentVolumeClaim:
             claimName: soulseek-download
+  
   volumeClaimTemplates:
     - metadata:
         name: slskd-config
