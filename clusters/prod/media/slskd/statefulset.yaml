@@ -34,8 +34,6 @@ spec:
               value: wireguard
             - name: WIREGUARD_ENDPOINT_IP_FAMILY
               value: v4
-            - name: WIREGUARD_MTU
-              value: "1320"
             - name: WIREGUARD_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
