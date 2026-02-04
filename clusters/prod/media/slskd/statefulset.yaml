@@ -19,11 +19,6 @@ spec:
           - 1.1.1.1
           - 1.0.0.1
 
-      securityContext:
-        sysctls:
-          - name: net.ipv4.conf.all.src_valid_mark
-            value: "1"
-
       containers:
         - name: vpn
           image: qmcgaw/gluetun
