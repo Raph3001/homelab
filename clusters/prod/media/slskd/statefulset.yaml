@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: slskd
+spec:
+  serviceName: "slskd"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: slskd
+  template:
+    metadata:
+      labels:
+        app: slskd
+    spec:
+      containers:
+        - name: slskd
+          image: slskd/slskd:latest
+          ports:
+            - containerPort: 5030
+              name: http
+            - containerPort: 5031
+              name: metrics
+            - containerPort: 50300
+              name: soulseek
+          env:
+            - name: SLSKD_REMOTE_CONFIGURATION
+              value: "true"
+          volumeMounts:
+            - name: slskd-config
+              mountPath: /app
+            - name: downloads
+              mountPath: /app/downloads 
+      volumes:
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: soulseek-download
+  volumeClaimTemplates:
+    - metadata:
+        name: slskd-config
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 10Gi

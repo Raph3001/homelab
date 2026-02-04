@@ -9,3 +9,4 @@ resources:
   - download-pvc.yaml
   - incomplete-pvc.yaml
   - transcoded-movies-pvc.yaml
+  - soulseek-download-pvc.yaml
