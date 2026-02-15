@@ -18,10 +18,7 @@ spec:
     publicServerName: "matrix.taild304c8.ts.net"
 
     config:
-      enableRegistration: true
-    
-    ingress:
-      enabled: false 
+      enableRegistration: false
     
     postgresql:
       enabled: true
