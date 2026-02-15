@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: element-tailscale
+  namespace: element
+  annotations:
+    tailscale.com/funnel: "true" 
+spec:
+  ingressClassName: tailscale
+  rules:
+  - host: matrix
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: matrix-synapse
+            port:
+              number: 8008
+  tls:
+    - hosts:
+      - matrix
+      

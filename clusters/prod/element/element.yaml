@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: matrix-synapse
+  namespace: element
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: matrix-synapse
+      version: "3.x.x"
+      sourceRef:
+        kind: HelmRepository
+        name: ananace
+        namespace: infra
+  values:
+    serverName: "matrix.taild304c8.ts.net"
+    publicServerName: "matrix.taild304c8.ts.net"
+    
+    ingress:
+      enabled: false 
+    
+    postgresql:
+      enabled: true
+      persistence:
+        size: 10Gi
+        
