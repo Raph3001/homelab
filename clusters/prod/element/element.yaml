@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: matrix-synapse
-      version: "3.x.x"
+      version: "3.10.4"
       sourceRef:
         kind: HelmRepository
         name: ananace
@@ -24,4 +24,3 @@ spec:
       enabled: true
       persistence:
         size: 10Gi
-        
