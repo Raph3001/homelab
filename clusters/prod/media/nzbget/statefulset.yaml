@@ -48,5 +48,4 @@ spec:
           persistentVolumeClaim:
             claimName: downloads
         - name: incomplete
-          persistentVolumeClaim:
-            claimName: incomplete
+          emptyDir: {} 
