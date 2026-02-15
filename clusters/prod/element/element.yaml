@@ -18,7 +18,9 @@ spec:
     publicServerName: "matrix.taild304c8.ts.net"
 
     config:
-      enableRegistration: false
+      enableRegistration: true
+      extraConfig:
+        suppress_key_server_warning: true
     
     postgresql:
       enabled: true
