@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: element
 resources:
   - namespace.yaml
+  - secrets.yaml
   - element.yaml
   - ingress.yaml

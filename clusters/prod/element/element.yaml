@@ -16,6 +16,9 @@ spec:
   values:
     serverName: "matrix.taild304c8.ts.net"
     publicServerName: "matrix.taild304c8.ts.net"
+
+    config:
+      enableRegistration: true
     
     ingress:
       enabled: false 
@@ -23,4 +26,10 @@ spec:
     postgresql:
       enabled: true
       persistence:
-        size: 10Gi
+        size: 75Gi
+
+  valuesFrom:
+    - kind: Secret
+      name: matrix-synapse-secrets
+      valuesKey: registration-shared-secret
+      targetPath: config.registrationSharedSecret
