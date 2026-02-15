@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: matrix-synapse
-      version: "3.10.4"
+      version: "3.12.18" # (versions found here) https://artifacthub.io/packages/helm/ananace-charts/matrix-synapse
       sourceRef:
         kind: HelmRepository
         name: ananace
