@@ -18,7 +18,7 @@ spec:
     publicServerName: "matrix.taild304c8.ts.net"
 
     config:
-      enableRegistration: true
+      enableRegistration: false
       extraConfig:
         suppress_key_server_warning: true
     
