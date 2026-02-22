@@ -5,7 +5,6 @@ metadata:
   namespace: cloudflare
 spec:
   interval: 5m
-
   chart:
     spec:
       chart: cloudflare-tunnel
@@ -14,10 +13,17 @@ spec:
         kind: HelmRepository
         name: cloudflare-repo
         namespace: infra
-
   values:
+    cloudflare:
+      tunnelName: k8s-tunnel
+      secretName: null 
+
+    volumes: []
+    volumeMounts: []
+
     args:
       - tunnel
+      - --no-autoupdate
       - run
       - --token
       - "$(TUNNEL_TOKEN)"
