@@ -14,21 +14,10 @@ spec:
         name: cloudflare-repo
         namespace: infra
   values:
-    command:
-      - cloudflared
-      - tunnel
-      - "--no-autoupdate"
-      - run
-      - --token
-      - "$(TUNNEL_TOKEN)"
-
-    configFile: null
-    volumes: []
-    volumeMounts: []
-
-    env:
-      - name: TUNNEL_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-tunnel
-            key: token
+    replicaCount: 0
+            
+  valuesFrom:
+    - kind: Secret
+      name: cloudflare-tunnel
+      valuesKey: token
+      targetPath: cloudflare.tunnelToken
