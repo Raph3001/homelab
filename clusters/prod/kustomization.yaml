@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - flux-system
   - infra
+  - cloudflare
   - tailscale
   - longhorn
   - media
