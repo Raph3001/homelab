@@ -4,6 +4,8 @@ metadata:
   name: cloudflare-tunnel
   namespace: cloudflare
 spec:
+  interval: 5m
+
   chart:
     spec:
       chart: cloudflare-tunnel
