@@ -9,10 +9,17 @@ spec:
     spec:
       chart: cloudflare-tunnel
       version: "0.3.2"
-      sourceRef:
-        kind: HelmRepository
-        name: cloudflare-repo
-        namespace: infra
+    args:
+      - tunnel
+      - run
+      - --token
+      - $(TUNNEL_TOKEN)
+    env:
+      - name: TUNNEL_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-tunnel-secret
+            key: token
   values:
     cloudflare:
       tunnelToken: ""
