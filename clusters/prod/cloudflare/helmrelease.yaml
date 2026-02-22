@@ -13,9 +13,6 @@ spec:
         kind: HelmRepository
         name: cloudflare-repo
         namespace: infra
-  values:
-    cloudflare:
-      tunnelToken: ""
             
   valuesFrom:
     - kind: Secret
