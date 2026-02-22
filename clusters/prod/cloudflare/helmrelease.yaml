@@ -4,7 +4,6 @@ metadata:
   name: cloudflare-tunnel
   namespace: cloudflare
 spec:
-  interval: 5m
   chart:
     spec:
       chart: cloudflare-tunnel
@@ -13,9 +12,17 @@ spec:
         kind: HelmRepository
         name: cloudflare-repo
         namespace: infra
-            
-  valuesFrom:
-    - kind: Secret
-      name: cloudflare-tunnel
-      valuesKey: token
-      targetPath: cloudflare.tunnelToken
+
+  values:
+    args:
+      - tunnel
+      - run
+      - --token
+      - "$(TUNNEL_TOKEN)"
+
+    env:
+      - name: TUNNEL_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-tunnel
+            key: token
