@@ -16,17 +16,6 @@ spec:
   values:
     cloudflare:
       tunnelToken: ""
-    args:
-      - tunnel
-      - run
-      - --token
-      - $(TUNNEL_TOKEN)
-    env:
-      - name: TUNNEL_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-tunnel-secret
-            key: token
             
   valuesFrom:
     - kind: Secret
