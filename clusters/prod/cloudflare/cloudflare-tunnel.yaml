@@ -21,6 +21,8 @@ spec:
         - run
         - --token
         - $(TUNNEL_TOKEN)
+        - --protocol
+        - http2
         env:
         - name: TUNNEL_TOKEN
           valueFrom:
