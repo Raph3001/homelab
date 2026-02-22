@@ -13,7 +13,9 @@ spec:
         kind: HelmRepository
         name: cloudflare-repo
         namespace: infra
-
+  values:
+    cloudflare:
+      tunnelToken: ""
     args:
       - tunnel
       - run
@@ -25,10 +27,7 @@ spec:
           secretKeyRef:
             name: cloudflare-tunnel-secret
             key: token
-
-  values:
-    cloudflare:
-      tunnelToken: ""
+            
   valuesFrom:
     - kind: Secret
       name: cloudflare-tunnel
