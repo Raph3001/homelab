@@ -14,19 +14,17 @@ spec:
         name: cloudflare-repo
         namespace: infra
   values:
-    cloudflare:
-      tunnelName: k8s-tunnel
-      secretName: null 
-
-    volumes: []
-    volumeMounts: []
-
-    args:
+    command:
+      - cloudflared
       - tunnel
-      - --no-autoupdate
+      - "--no-autoupdate"
       - run
       - --token
       - "$(TUNNEL_TOKEN)"
+
+    configFile: null
+    volumes: []
+    volumeMounts: []
 
     env:
       - name: TUNNEL_TOKEN
