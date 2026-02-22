@@ -4,4 +4,4 @@ namespace: cloudflare
 resources:
   - namespace.yaml
   - secrets.yaml
-  - cloudflare.yaml
+  - helmrelease.yaml

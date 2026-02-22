@@ -4,5 +4,5 @@ namespace: element
 resources:
   - namespace.yaml
   - secrets.yaml
-  - element.yaml
+  - helmrelease.yaml
   - ingress.yaml
