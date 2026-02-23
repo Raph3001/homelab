@@ -10,7 +10,7 @@ data:
         service: http://jellyfin.media.svc.cluster.local:80
 
       - hostname: navidrome.raphael-bader.com
-        service: http://navidrome.media.svc.cluster.local:4533
+        service: http://navidrome.media.svc.cluster.local:80
 
       - hostname: matrix.raphael-bader.com
         service: http://matrix.element.svc.cluster.local:8008
