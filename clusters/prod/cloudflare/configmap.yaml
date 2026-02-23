@@ -16,6 +16,6 @@ data:
         service: http://matrix.element.svc.cluster.local:8008
 
       - hostname: openwebui.raphael-bader.com
-        service: http://openwebui.llm.svc.cluster.local:8080
+        service: http://openwebui.llm.svc.cluster.local:80
 
       - service: http_status:404
