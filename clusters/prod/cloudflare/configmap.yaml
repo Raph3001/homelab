@@ -6,7 +6,7 @@ metadata:
 data:
   config.yaml: |
     ingress:
-      - hostname: jellyfin.mydomain.com
+      - hostname: jellyfin.raphael-bader.com
         service: http://jellyfin.media.svc.cluster.local:80
       - service: http_status:404
 
