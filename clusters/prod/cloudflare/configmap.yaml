@@ -8,7 +8,14 @@ data:
     ingress:
       - hostname: jellyfin.raphael-bader.com
         service: http://jellyfin.media.svc.cluster.local:80
-      - service: http_status:404
 
-    originRequest:
-      httpHostHeader: jellyfin.raphael-bader.com
+      - hostname: navidrome.raphael-bader.com
+        service: http://navidrome.media.svc.cluster.local:4533
+
+      - hostname: matrix.raphael-bader.com
+        service: http://matrix.element.svc.cluster.local:8008
+
+      - hostname: openwebui.raphael-bader.com
+        service: http://openwebui.llm.svc.cluster.local:8080
+
+      - service: http_status:404
