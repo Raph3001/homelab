@@ -13,9 +13,9 @@ data:
         service: http://navidrome.media.svc.cluster.local:80
 
       - hostname: matrix.raphael-bader.com
-        service: http://matrix.element.svc.cluster.local:8008
+        service: http://matrix-synapse.element.svc.cluster.local:8008
 
       - hostname: openwebui.raphael-bader.com
-        service: http://openwebui.llm.svc.cluster.local:80
+        service: http://openwebui-open-webui.llm.svc.cluster.local:80
 
       - service: http_status:404
