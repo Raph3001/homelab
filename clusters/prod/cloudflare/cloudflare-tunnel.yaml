@@ -18,11 +18,11 @@ spec:
         args:
           - tunnel
           - --no-autoupdate
+          - --config
+          - /etc/cloudflared/config.yaml
           - run
           - --token
           - $(TUNNEL_TOKEN)
-          - --config
-          - /etc/cloudflared/config.yaml
         env:
           - name: TUNNEL_TOKEN
             valueFrom:
