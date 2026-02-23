@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: cloudflare
+data:
+  config.yaml: |
+    ingress:
+      - hostname: jellyfin.mydomain.com
+        service: http://jellyfin.media.svc.cluster.local:80
+      - service: http_status:404
+
+    originRequest:
+      httpHostHeader: jellyfin.raphael-bader.com
