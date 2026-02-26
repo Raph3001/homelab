@@ -21,14 +21,13 @@ spec:
       enableRegistration: false
       enableRegistrationWithoutVerification: true
   
-    extraConfig:
-      suppress_key_server_warning: true
-      turn_uris:
-        - "turn:global.metered.ca:443?transport=udp"
-        - "turn:global.metered.ca:443?transport=tcp"
-        - "turn:global.metered.ca:80?transport=udp"
-        - "turn:global.metered.ca:80?transport=tcp"
-        - "stun:global.metered.ca:80"
+      extraConfig:
+        suppress_key_server_warning: true
+        turn_uris:
+          - "turn:global.relay.metered.ca:80?transport=udp"
+          - "turn:global.relay.metered.ca:80?transport=tcp"
+          - "turn:global.relay.metered.ca:443?transport=udp"
+          - "turns:global.relay.metered.ca:443?transport=tcp"
 
   valuesFrom:
     - kind: Secret
