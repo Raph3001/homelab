@@ -17,6 +17,12 @@ spec:
     serverName: "matrix.raphael-bader.com"
     publicServerName: "matrix.raphael-bader.com"
 
+    turn:
+      enabled: true
+      uris:
+      - "turn:matrix.raphael-bader.com:3478?transport=udp"
+      - "turn:matrix.raphael-bader.com:3478?transport=tcp"
+
     config:
       enableRegistration: false
       enableRegistrationWithoutVerification: true
@@ -36,3 +42,8 @@ spec:
       name: matrix-synapse-secrets
       valuesKey: registration-shared-secret
       targetPath: config.registrationSharedSecret
+
+    - kind: Secret
+      name: matrix-synapse-secrets
+      valuesKey: registration-shared-secret
+      targetPath: turn.staticSecret
