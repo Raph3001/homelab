@@ -17,33 +17,31 @@ spec:
     serverName: "matrix.raphael-bader.com"
     publicServerName: "matrix.raphael-bader.com"
 
-    turn:
-      enabled: true
-      uris:
-      - "turn:matrix.raphael-bader.com:3478?transport=udp"
-      - "turn:matrix.raphael-bader.com:3478?transport=tcp"
-
     config:
       enableRegistration: false
       enableRegistrationWithoutVerification: true
   
     extraConfig:
       suppress_key_server_warning: true
-
-    
-    
-    postgresql:
-      enabled: true
-      persistence:
-        size: 75Gi
+      turn_uris:
+        - "turn:global.metered.ca:443?transport=udp"
+        - "turn:global.metered.ca:443?transport=tcp"
+        - "turn:global.metered.ca:80?transport=udp"
+        - "turn:global.metered.ca:80?transport=tcp"
+        - "stun:global.metered.ca:80"
 
   valuesFrom:
     - kind: Secret
       name: matrix-synapse-secrets
       valuesKey: registration-shared-secret
       targetPath: config.registrationSharedSecret
-
+    
     - kind: Secret
       name: matrix-synapse-secrets
-      valuesKey: turn-shared-secret
-      targetPath: turn.staticSecret
+      valuesKey: turn-username
+      targetPath: config.extraConfig.turn_user
+    
+    - kind: Secret
+      name: matrix-synapse-secrets
+      valuesKey: turn-password
+      targetPath: config.extraConfig.turn_pass
