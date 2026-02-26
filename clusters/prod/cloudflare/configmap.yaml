@@ -14,6 +14,8 @@ data:
 
       - hostname: matrix.raphael-bader.com
         service: http://matrix-synapse.element.svc.cluster.local:8008
+        originRequest:
+          udp: true
 
       - hostname: openwebui.raphael-bader.com
         service: http://openwebui-open-webui.llm.svc.cluster.local:80

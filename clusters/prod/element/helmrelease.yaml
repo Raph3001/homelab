@@ -45,5 +45,5 @@ spec:
 
     - kind: Secret
       name: matrix-synapse-secrets
-      valuesKey: registration-shared-secret
+      valuesKey: turn-shared-secret
       targetPath: turn.staticSecret
