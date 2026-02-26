@@ -14,7 +14,7 @@ spec:
         name: ananace
         namespace: infra
   values:
-    serverName: "matrix.raphael-bader.com"
+    serverName: "matrix.taild304c8.ts.net"
     publicServerName: "matrix.raphael-bader.com"
 
     config:
