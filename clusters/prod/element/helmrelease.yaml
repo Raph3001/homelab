@@ -14,34 +14,19 @@ spec:
         name: ananace
         namespace: infra
   values:
-    serverName: "matrix.raphael-bader.com"
-    publicServerName: "matrix.raphael-bader.com"
+    serverName: "matrix.taild304c8.ts.net"
+    publicServerName: "matrix.taild304c8.ts.net"
 
     config:
       enableRegistration: false
       enableRegistrationWithoutVerification: true
   
-      turnUris:
-        - "turn:global.relay.metered.ca:80?transport=udp"
-        - "turn:global.relay.metered.ca:80?transport=tcp"
-        - "turn:global.relay.metered.ca:443?transport=udp"
-        - "turns:global.relay.metered.ca:443?transport=tcp"
       extraConfig:
         suppress_key_server_warning: true
-        turn_user_lifetime: 1000000
 
   valuesFrom:
     - kind: Secret
       name: matrix-synapse-secrets
       valuesKey: registration-shared-secret
       targetPath: config.registrationSharedSecret
-    
-    - kind: Secret
-      name: matrix-synapse-secrets
-      valuesKey: turn-username
-      targetPath: config.extraConfig.turn_user
-    
-    - kind: Secret
-      name: matrix-synapse-secrets
-      valuesKey: turn-password
-      targetPath: config.extraConfig.turn_pass
+      
