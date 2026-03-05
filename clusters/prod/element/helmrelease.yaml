@@ -14,8 +14,8 @@ spec:
         name: ananace
         namespace: infra
   values:
-    serverName: "matrix.taild304c8.ts.net"
-    publicServerName: "matrix.taild304c8.ts.net"
+    serverName: "matrix.raphael-bader.com"
+    publicServerName: "matrix.raphael-bader.com"
 
     config:
       enableRegistration: false
@@ -29,4 +29,3 @@ spec:
       name: matrix-synapse-secrets
       valuesKey: registration-shared-secret
       targetPath: config.registrationSharedSecret
-      
