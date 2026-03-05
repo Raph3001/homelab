@@ -81,12 +81,8 @@ spec:
               mountPath: /config
             - name: tv
               mountPath: /tv
-            - name: transcoded-movies
-              mountPath: /transcoded-movies
             - name: movies
               mountPath: /movies
-            - name: videos
-              mountPath: /videos
             - name: jellyfin-cache
               mountPath: /cache
             - name: dri
@@ -100,12 +96,6 @@ spec:
         - name: movies
           persistentVolumeClaim:
             claimName: movies
-        - name: videos
-          persistentVolumeClaim:
-            claimName: videos
-        - name: transcoded-movies
-          persistentVolumeClaim:
-            claimName: transcoded-movies
         - name: dri
           hostPath:
             path: /dev/dri
