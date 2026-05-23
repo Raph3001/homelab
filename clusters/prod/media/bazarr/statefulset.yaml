@@ -34,6 +34,8 @@ spec:
               mountPath: /movies
             - name: tv
               mountPath: /tv
+            - name: serien
+              mountPath: /serien
       volumes:
         - name: tv
           persistentVolumeClaim:
@@ -41,6 +43,9 @@ spec:
         - name: movies
           persistentVolumeClaim:
             claimName: movies
+        - name: serien
+          persistentVolumeClaim:
+            claimName: serien
   volumeClaimTemplates:
     - metadata:
         name: bazarr-config
