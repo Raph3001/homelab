@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minecraft
+  name: minecraft-jan
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: minecraft
+      app: minecraft-jan
   template:
     metadata:
       labels:
-        app: minecraft
+        app: minecraft-jan
     spec:
       containers:
-        - name: minecraft
+        - name: minecraft-jan
           image: itzg/minecraft-server:latest
           env:
             - name: EULA
@@ -30,7 +30,7 @@ spec:
               value: "Raph3001,roteKlaue"   # comma-separated op list
           ports:
             - containerPort: 25565
-              name: minecraft
+              name: minecraft-jan
           volumeMounts:
             - name: data
               mountPath: /data

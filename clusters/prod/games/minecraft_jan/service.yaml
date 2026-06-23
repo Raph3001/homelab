@@ -20,10 +20,10 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: jellyfin
+      name: minecraft-jan
       port:
         name: http
   ingressClassName: tailscale
   tls:
     - hosts:
-      - jellyfin
+      - minecraft-jan
