@@ -20,4 +20,7 @@ data:
       - hostname: openwebui.raphael-bader.com
         service: http://openwebui-open-webui.llm.svc.cluster.local:80
 
+      - hostname: minecraft-jan.raphael-bader.com
+        service: http://minecraft-jan.llm.svc.cluster.local:80
+
       - service: http_status:404
