@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: minecraft-jan
 spec:
-  replicas: 1
+  replicas: 0 # set to 1 later
   selector:
     matchLabels:
       app: minecraft-jan
@@ -12,6 +12,29 @@ spec:
       labels:
         app: minecraft-jan
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: perf
+                    operator: In
+                    values: ["high"]
+
+            - weight: 50
+              preference:
+                matchExpressions:
+                  - key: perf
+                    operator: In
+                    values: ["medium"]
+
+            - weight: 10
+              preference:
+                matchExpressions:
+                  - key: perf
+                    operator: In
+                    values: ["low"]
       containers:
         - name: minecraft-jan
           image: itzg/minecraft-server:latest
@@ -27,7 +50,9 @@ spec:
             - name: DIFFICULTY
               value: "normal"
             - name: OPS
-              value: "Raph3001,roteKlaue"   # comma-separated op list
+              value: "Raph3001,roteKlaue"
+            - name: WHITELIST
+              value: "Raph3001,roteKlaue"
           ports:
             - containerPort: 25565
               name: minecraft-jan
