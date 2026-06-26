@@ -13,6 +13,6 @@ spec:
   loadBalancerClass: tailscale
   ports:
     - name: minecraft
-      port: 25565
+      port: 443
       targetPort: 25565
       protocol: TCP
