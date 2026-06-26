@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: jellyfin
   annotations:
-    metallb.io/loadBalancerIPs: 192.168.8.230
+    metallb.io/loadBalancerIPs: 192.168.8.237
 spec:
   type: LoadBalancer
   selector:
