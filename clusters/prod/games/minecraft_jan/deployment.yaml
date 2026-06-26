@@ -1,72 +1,72 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: minecraft-jan
-spec:
-  replicas: 0 # set to 1 later
-  selector:
-    matchLabels:
-      app: minecraft-jan
-  template:
-    metadata:
-      labels:
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: minecraft-jan
+  spec:
+    replicas: 1 # set to 1 later
+    selector:
+      matchLabels:
         app: minecraft-jan
-    spec:
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              preference:
-                matchExpressions:
-                  - key: perf
-                    operator: In
-                    values: ["high"]
+    template:
+      metadata:
+        labels:
+          app: minecraft-jan
+      spec:
+        affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                preference:
+                  matchExpressions:
+                    - key: perf
+                      operator: In
+                      values: ["high"]
 
-            - weight: 50
-              preference:
-                matchExpressions:
-                  - key: perf
-                    operator: In
-                    values: ["medium"]
+              - weight: 50
+                preference:
+                  matchExpressions:
+                    - key: perf
+                      operator: In
+                      values: ["medium"]
 
-            - weight: 10
-              preference:
-                matchExpressions:
-                  - key: perf
-                    operator: In
-                    values: ["low"]
-      containers:
-        - name: minecraft-jan
-          image: itzg/minecraft-server:latest
-          env:
-            - name: EULA
-              value: "TRUE"
-            - name: TYPE
-              value: "NEOFORGE"
-            - name: VERSION
-              value: "1.21.11"
-            - name: MEMORY
-              value: "8G"
-            - name: DIFFICULTY
-              value: "normal"
-            - name: OPS
-              value: "Raph3001,roteKlaue"
-            - name: WHITELIST
-              value: "Raph3001,roteKlaue"
-          ports:
-            - containerPort: 25565
-              name: minecraft-jan
-          volumeMounts:
-            - name: data
-              mountPath: /data
-          resources:
-            requests:
-              memory: "2Gi"
-              cpu: "1"
-            limits:
-              memory: "8Gi"
-              cpu: "8"
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: minecraft-data-jan
+              - weight: 10
+                preference:
+                  matchExpressions:
+                    - key: perf
+                      operator: In
+                      values: ["low"]
+        containers:
+          - name: minecraft-jan
+            image: itzg/minecraft-server:latest
+            env:
+              - name: EULA
+                value: "TRUE"
+              - name: TYPE
+                value: "NEOFORGE"
+              - name: VERSION
+                value: "1.21.11"
+              - name: MEMORY
+                value: "8G"
+              - name: DIFFICULTY
+                value: "normal"
+              - name: OPS
+                value: "Raph3001,roteKlaue"
+              - name: WHITELIST
+                value: "Raph3001,roteKlaue"
+            ports:
+              - containerPort: 25565
+                name: minecraft-jan
+            volumeMounts:
+              - name: data
+                mountPath: /data
+            resources:
+              requests:
+                memory: "2Gi"
+                cpu: "1"
+              limits:
+                memory: "8Gi"
+                cpu: "8"
+        volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: minecraft-data-jan
