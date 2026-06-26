@@ -54,7 +54,7 @@
               - name: WHITELIST
                 value: "Raph3001,roteKlaue"
               - name: MODRINTH_PROJECTS
-                value: "create,farmers-delight,waystones,balm"
+                value: "create,farmers-delight,waystones,balm,moonlight,sable,spell_power,jamlib"
             ports:
               - containerPort: 25565
                 name: minecraft-jan
