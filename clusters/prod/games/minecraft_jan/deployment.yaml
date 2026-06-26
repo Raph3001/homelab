@@ -3,7 +3,7 @@
   metadata:
     name: minecraft-jan
   spec:
-    replicas: 1 # set to 1 later
+    replicas: 0 
     selector:
       matchLabels:
         app: minecraft-jan
