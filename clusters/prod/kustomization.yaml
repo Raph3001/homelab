@@ -7,8 +7,7 @@ resources:
   - cloudflare
   - tailscale
   - longhorn
-  - metallb/base
-  - metallb/config
+  - metallb
   - media
   - llm
   - element
