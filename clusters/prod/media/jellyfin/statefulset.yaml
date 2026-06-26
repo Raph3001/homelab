@@ -21,7 +21,7 @@ spec:
                 matchExpressions:
                   - key: perf
                     operator: In
-                    values: ["low"]
+                    values: ["high"]
 
             - weight: 50
               preference:
@@ -35,7 +35,7 @@ spec:
                 matchExpressions:
                   - key: perf
                     operator: In
-                    values: ["high"]
+                    values: ["low"]
       containers:
         - name: jellyfin
           image: jellyfin/jellyfin:latest
