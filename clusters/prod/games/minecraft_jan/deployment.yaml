@@ -3,7 +3,7 @@
   metadata:
     name: minecraft-jan
   spec:
-    replicas: 0 
+    replicas: 1
     selector:
       matchLabels:
         app: minecraft-jan
@@ -53,6 +53,18 @@
                 value: "Raph3001,roteKlaue"
               - name: WHITELIST
                 value: "Raph3001,roteKlaue"
+              - name: ENABLE_AUTOPAUSE
+                value: "true"
+              - name: MAX_TICK_TIME
+                value: "-1"
+              - name: AUTOPAUSE_TIMEOUT_EST
+                value: "600"
+              - name: AUTOPAUSE_TIMEOUT_INIT
+                value: "300"
+            securityContext:
+              capabilities:
+                add:
+                  - NET_RAW
             ports:
               - containerPort: 25565
                 name: minecraft-jan
