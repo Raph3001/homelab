@@ -46,7 +46,7 @@
               - name: VERSION
                 value: "1.21.1"
               - name: MEMORY
-                value: "8G"
+                value: "7G"
               - name: DIFFICULTY
                 value: "normal"
               - name: OPS
@@ -73,10 +73,10 @@
                 mountPath: /data
             resources:
               requests:
-                memory: "2Gi"
+                memory: "4Gi"
                 cpu: "1"
               limits:
-                memory: "8Gi"
+                memory: "9Gi"
                 cpu: "8"
         volumes:
           - name: data
