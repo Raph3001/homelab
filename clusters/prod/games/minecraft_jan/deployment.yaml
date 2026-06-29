@@ -50,9 +50,9 @@
               - name: DIFFICULTY
                 value: "normal"
               - name: OPS
-                value: "Raph3001,roteKlaue"
+                value: "Raph3001,roteKlaue,Jooooonax"
               - name: WHITELIST
-                value: "Raph3001,roteKlaue"
+                value: "Raph3001,roteKlaue,Jooooonax"
               - name: ENABLE_AUTOPAUSE
                 value: "true"
               - name: MAX_TICK_TIME
