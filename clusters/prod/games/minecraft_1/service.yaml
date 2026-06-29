@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-1
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.8.238
+spec:
+  type: LoadBalancer
+  selector:
+    app: minecraft-1
+  ports:
+    - name: minecraft
+      port: 25566
+      targetPort: 25566
+      protocol: TCP

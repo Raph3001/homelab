@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-vanilla
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft-vanilla
+  template:
+    metadata:
+      labels:
+        app: minecraft-vanilla
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: perf
+                    operator: In
+                    values: ["high"]
+            - weight: 50
+              preference:
+                matchExpressions:
+                  - key: perf
+                    operator: In
+                    values: ["medium"]
+            - weight: 10
+              preference:
+                matchExpressions:
+                  - key: perf
+                    operator: In
+                    values: ["low"]
+      containers:
+        - name: minecraft-vanilla
+          image: itzg/minecraft-server:2026.6.1
+          env:
+            - name: EULA
+              value: "TRUE"
+            - name: TYPE
+              value: "VANILLA"
+            - name: VERSION
+              value: "26.2"
+            - name: MEMORY
+              value: "4G"
+            - name: DIFFICULTY
+              value: "normal"
+            - name: OPS
+              value: "Raph3001,roteKlaue"
+            - name: ENABLE_AUTOPAUSE
+              value: "true"
+            - name: MAX_TICK_TIME
+              value: "-1"
+            - name: AUTOPAUSE_TIMEOUT_EST
+              value: "600"
+            - name: AUTOPAUSE_TIMEOUT_INIT
+              value: "300"
+            - name: SERVER_PORT
+              value: "25566"
+          securityContext:
+            capabilities:
+              add:
+                - NET_RAW
+          ports:
+            - containerPort: 25566
+              name: minecraft-van
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
+            limits:
+              memory: "6Gi"
+              cpu: "4"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: minecraft-data-vanilla
