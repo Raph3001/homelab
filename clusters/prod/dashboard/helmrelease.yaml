@@ -15,9 +15,6 @@ spec:
         namespace: infra
   values:
     grafana:
-      envFrom:
-        - secretRef:
-          name: dashboard
       persistence:
         enabled: true
         size: 5Gi
@@ -44,6 +41,11 @@ spec:
       enabled: true
     kubeStateMetrics:
       enabled: true
+  valuesFrom:
+    - kind: Secret
+      name: dashboard
+      valuesKey: adminPassword
+      targetPath: grafana.adminPassword
   upgrade:
     remediation:
       remediateLastFailure: true
