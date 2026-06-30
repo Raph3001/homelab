@@ -4,7 +4,7 @@ metadata:
   name: minecraft-jan
   annotations:
     tailscale.com/expose: "true"
-    tailscale.com/hostname: "minecraft-jan"   # how it appears in your tailnet
+    tailscale.com/hostname: "minecraft-jan"
     tailscale.com/funnel: "true"
 spec:
   selector:
