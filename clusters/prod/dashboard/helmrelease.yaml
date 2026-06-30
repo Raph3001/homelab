@@ -18,6 +18,12 @@ spec:
       persistence:
         enabled: true
         size: 5Gi
+      ingress:
+        enabled: true
+        ingressClassName: tailscale
+        tls:
+          - hosts:
+              - grafana
     prometheus:
       prometheusSpec:
         retention: 15d
