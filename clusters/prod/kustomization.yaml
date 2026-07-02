@@ -13,3 +13,4 @@ resources:
   - element
   - games
   - dashboard
+  - cert-manager

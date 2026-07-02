@@ -6,3 +6,4 @@ resources:
   - element.yaml
   - openwebui.yaml
   - dashboard.yaml
+  - cert-manager.yaml
