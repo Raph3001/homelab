@@ -2,31 +2,38 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jellyfin
-  annotations:
-    metallb.io/loadBalancerIPs: 192.168.8.237
+  namespace: media
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: jellyfin
   ports:
     - name: http
       port: 80
       targetPort: http
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: jellyfin-tailscale
+  name: jellyfin-internal
+  namespace: media
   annotations:
-    tailscale.com/funnel: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
-  defaultBackend:
-    service:
-      name: jellyfin
-      port:
-        name: http
-  ingressClassName: tailscale
+  ingressClassName: traefik
   tls:
     - hosts:
-      - jellyfin
+        - jellyfin.raphael-bader.com
+      secretName: jellyfin-tls
+  rules:
+    - host: jellyfin.raphael-bader.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jellyfin
+                port:
+                  name: http
