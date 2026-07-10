@@ -2,10 +2,10 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: slskd
-  namespace: media  # Added namespace for clarity
+  namespace: slskd
 spec:
   serviceName: slskd
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: slskd
@@ -15,94 +15,80 @@ spec:
         app: slskd
     spec:
       containers:
-#        - name: vpn
-#          image: qmcgaw/gluetun:latest
-#          securityContext:
-#            privileged: true
-#            capabilities:
-#              add:
-#                - NET_ADMIN
-#          env:
-#            - name: DNS_KEEP_NAMESERVERS
-#              value: "on"
-#            - name: DNS_ADDRESS
-#              value: "10.43.0.10"
-#            - name: DOT
-#              value: "off"
-#            - name: VPN_SERVICE_PROVIDER
-#              value: mullvad
-#            - name: VPN_TYPE
-#              value: wireguard
-#            - name: WIREGUARD_ENDPOINT_IP_FAMILY
-#              value: v4
-#            - name: WIREGUARD_INTERFACE
-#              value: "wg0"
-#            - name: UPDATER_PERIOD
-#              value: "0"
-#            - name: WIREGUARD_MTU
-#              value: "1280"
-#            - name: SERVER_COUNTRIES
-#              value: Sweden
-#            - name: FIREWALL_OUTBOUND_SUBNETS
-#              value: "10.0.0.0/8,192.168.0.0/16,172.16.0.0/12"
-#            - name: FIREWALL_INBOUND_SUBNETS
-#              value: "0.0.0.0/0"
-#          ports:
-#            - containerPort: 5030
-#              name: http
-#          volumeMounts:
-#            # Mount the ConfigMap we just created
-#            - name: wg-config
-#              mountPath: /config/wireguard
-#              readOnly: true
-#            # Existing mounts
-#            - name: slskd-config
-#              mountPath: /app
-#            - name: downloads
-#              mountPath: /app/downloads
-#          lifecycle:
-#            postStart:
-#              exec:
-#                command:
-#                  - /bin/sh
-#                  - -c
-#                  - |
-#                    echo "Waiting for VPN interface..."
-#                    sleep 5
-#                    echo "Forcing MTU to 1280 on tun0..."
-#                    ip link set tun0 mtu 1280 || echo "Interface not up yet, will retry..."
-#                    echo "Forcing route updates..."
-#                    ip route add 10.0.0.0/8 via 10.42.5.1 dev eth0 || echo "Route exists"
-#                    ip route add 192.168.0.0/16 via 10.42.5.1 dev eth0 || echo "Route exists"
-#                    ip route add 172.16.0.0/12 via 10.42.5.1 dev eth0 || echo "Route exists"
-        - name: slskd
-          image: slskd/slskd:latest
+        - name: gluetun
+          image: qmcgaw/gluetun
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
           env:
-            - name: SLSKD_HTTP_URL
-              value: "http://127.0.0.1:5030"
+            - name: VPN_SERVICE_PROVIDER
+              value: mullvad
+            - name: VPN_TYPE
+              value: wireguard
+            - name: WIREGUARD_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gluetun-secrets
+                  key: WIREGUARD_PRIVATE_KEY
+            - name: WIREGUARD_ADDRESSES
+              valueFrom:
+                secretKeyRef:
+                  name: wireguard-address
+                  key: WIREGUARD_ADDRESSES
+            - name: WIREGUARD_IMPLEMENTATION
+              value: userspace
+            - name: DOT
+              value: "off"
+            - name: FIREWALL_OUTBOUND_SUBNETS
+              value: "192.168.8.0/24"
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          volumeMounts:
+            - name: dev-tun
+              mountPath: /dev/net/tun
+          ports:
+            - containerPort: 5030
+              name: web
+            - containerPort: 5031
+              name: web-https
+            - containerPort: 50300
+              name: soulseek
+
+        - name: slskd
+          image: slskd/slskd
+          env:
             - name: SLSKD_REMOTE_CONFIGURATION
               value: "true"
-            - name: SLSKD_SOULSEEK_USERNAME
-              value: "corneliust"
-            - name: SLSKD_SOULSEEK_PASSWORD
-              value: "Cornelius123"
           volumeMounts:
-            - name: slskd-config
+            - name: config
               mountPath: /app
+            - name: music
+              mountPath: /music
             - name: downloads
-              mountPath: /app/downloads
+              mountPath: /downloads
+
       volumes:
+        - name: dev-tun
+          hostPath:
+            path: /dev/net/tun
+            type: CharDevice
+        - name: music
+          nfs:
+            server: 192.168.8.123
+            path: /mnt/main/music
         - name: downloads
-          persistentVolumeClaim:
-            claimName: soulseek-download
-        - name: wg-config
-          configMap:
-            name: wg-config
+          nfs:
+            server: 192.168.8.123
+            path: /mnt/main/soulseek
+
   volumeClaimTemplates:
     - metadata:
-        name: slskd-config
+        name: config
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: longhorn
         resources:
           requests:
-            storage: 10Gi
+            storage: 1Gi
