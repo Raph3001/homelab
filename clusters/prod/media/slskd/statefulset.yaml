@@ -28,7 +28,7 @@ spec:
             - name: WIREGUARD_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: gluetun-secrets
+                  name: private-key
                   key: WIREGUARD_PRIVATE_KEY
             - name: WIREGUARD_ADDRESSES
               valueFrom:
