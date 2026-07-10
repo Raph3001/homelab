@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: slskd
-  namespace: slskd
 spec:
   serviceName: slskd
   replicas: 1
@@ -28,13 +27,13 @@ spec:
             - name: WIREGUARD_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: private-key
-                  key: WIREGUARD_PRIVATE_KEY
+                  name: mullvad-vpn
+                  key: private-key
             - name: WIREGUARD_ADDRESSES
               valueFrom:
                 secretKeyRef:
-                  name: wireguard-address
-                  key: WIREGUARD_ADDRESSES
+                  name: mullvad-vpn
+                  key: wireguard-address
             - name: WIREGUARD_IMPLEMENTATION
               value: userspace
             - name: DOT
