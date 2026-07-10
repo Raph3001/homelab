@@ -36,8 +36,6 @@ spec:
                   key: wireguard-address
             - name: WIREGUARD_IMPLEMENTATION
               value: userspace
-            - name: DOT
-              value: "off"
             - name: FIREWALL_OUTBOUND_SUBNETS
               value: "192.168.8.0/24"
             - name: PUID
