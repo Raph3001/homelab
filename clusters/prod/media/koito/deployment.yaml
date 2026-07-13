@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: koito
-          image: ghcr.io/gabehf/koito:latest
+          image: gabehf/koito:latest
           env:
             - name: PUID
               value: "1000"
