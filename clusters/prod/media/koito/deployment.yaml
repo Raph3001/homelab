@@ -18,10 +18,11 @@ spec:
         - name: koito
           image: gabehf/koito:latest
           env:
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
+            - name: KOITO_SUBSONIC_URL
+              value: https://navidrome.raphael-bader.com
+          envFrom:
+            - secretRef:
+                name: koito
           ports:
             - name: http
               containerPort: 4110
