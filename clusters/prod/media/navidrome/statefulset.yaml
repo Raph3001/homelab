@@ -35,7 +35,7 @@ spec:
             - name: ND_LISTENBRAINZ_ENABLED
               value: "true"
             - name: ND_LISTENBRAINZ_BASEURL
-              value: "https://koito-alex.taild304c8.ts.net/apis/listenbrainz/1"
+              value: "https://koito.taild304c8.ts.net/apis/listenbrainz/1"
           envFrom:
             - secretRef:
                 name: navidrome
