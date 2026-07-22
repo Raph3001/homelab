@@ -40,7 +40,7 @@ spec:
             - name: navidrome-alex-config
               mountPath: /data
             - name: music-alex
-              mountPath: /music-alex
+              mountPath: /music
       volumes:
         - name: music-alex
           persistentVolumeClaim:
