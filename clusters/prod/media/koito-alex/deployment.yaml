@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koito-alex
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: koito-alex
+  template:
+    metadata:
+      labels:
+        app: koito-alex
+    spec:
+      containers:
+        - name: koito-alex
+          image: gabehf/koito:latest
+          env:
+            - name: KOITO_SUBSONIC_URL
+              value: https://navidrome-alex.raphael-bader.com
+          envFrom:
+            - secretRef:
+                name: koito-alex
+          ports:
+            - name: http
+              containerPort: 4110
+          volumeMounts:
+            - name: koito-alex-data
+              mountPath: /etc/koito
+      volumes:
+        - name: koito-alex-data
+          persistentVolumeClaim:
+            claimName: koito-alex-pvc
