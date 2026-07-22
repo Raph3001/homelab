@@ -23,4 +23,7 @@ data:
       - hostname: minecraft-jan.raphael-bader.com
         service: http://minecraft-jan.llm.svc.cluster.local:80
 
+      - hostname: navidrome-alex.raphael-bader.com
+        service: http://navidrome-alex.media.svc.cluster.local:80
+
       - service: http_status:404
