@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: navidrome-alex
+spec:
+  selector:
+    matchLabels:
+      app: navidrome-alex
+  serviceName: navidrome-alex
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: navidrome-alex
+    spec:
+      tolerations:
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 30
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 30
+      containers:
+        - name: navidrome-alex
+          image: deluan/navidrome
+          env:
+         #   - name: ND_LISTENBRAINZ_ENABLED
+         #     value: "true"
+         #   - name: ND_LISTENBRAINZ_BASEURL
+         #     value: "https://koito-alex.taild304c8.ts.net/apis/listenbrainz/1"
+          envFrom:
+            - secretRef:
+                name: navidrome-alex
+          ports:
+            - name: http
+              containerPort: 4533
+          volumeMounts:
+            - name: navidrome-alex-config
+              mountPath: /data
+            - name: music-alex
+              mountPath: /music-alex
+      volumes:
+        - name: music-alex
+          persistentVolumeClaim:
+            claimName: music-alex
+  volumeClaimTemplates:
+    - metadata:
+        name: navidrome-alex-config
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

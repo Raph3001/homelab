@@ -10,3 +10,4 @@ resources:
   - transcoded-movies-pvc.yaml
   - soulseek-download-pvc.yaml
   - german-series-pvc.yaml
+  - music-alex-pvc.yaml
