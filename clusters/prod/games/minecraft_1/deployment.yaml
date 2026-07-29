@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: minecraft-vanilla
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: minecraft-vanilla
@@ -48,7 +48,7 @@ spec:
             - name: DIFFICULTY
               value: "normal"
             - name: OPS
-              value: "Raph3001,roteKlaue"
+              value: "Raph3001,roteKlaue,Jooooonax"
             - name: ENABLE_AUTOPAUSE
               value: "true"
             - name: MAX_TICK_TIME
