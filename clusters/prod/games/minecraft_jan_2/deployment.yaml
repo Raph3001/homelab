@@ -1,7 +1,7 @@
   apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: minecraft-jan
+    name: minecraft-jan-2
   spec:
     replicas: 1
     selector:
