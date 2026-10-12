@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - minecraft-data-jan.yaml
   - minecraft-data-1.yaml
+  - minecraft-data-jan-2.yaml
